@@ -29,6 +29,7 @@ make_rootfs() {
 		tar zxf ${chrootdir}.tgz
 	else
 		echo "Creating root filesystem"
+		rm -rf ${chrootdir}
 		qemu-debootstrap --arch ${arch} ${dist} ${chrootdir} ${debianurl}
 		tar zcf ${chrootdir}.tgz ${chrootdir}
 	fi
@@ -95,6 +96,13 @@ customize() {
 		cp customize.sh ${chrootdir}/root
 		chroot ${chrootdir} /root/customize.sh
 		umount_all
+
+		# kill everything executed with qemu-arm-static:
+		pkill -f /usr/bin/qemu-arm-static
+		sleep 3
+		pkill -9 -f /usr/bin/qemu-arm-static
+
+		tar zcf ${chrootdir}-customized.tgz ${chrootdir}
 	fi
 }
 
