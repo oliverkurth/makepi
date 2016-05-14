@@ -5,9 +5,9 @@ wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key ad
 apt-get update
 apt-get -y upgrade
 
-apt-get install -y sudo openssh-server ntp patch less rsync
+apt-get install -y sudo openssh-server ntp patch less rsync vim
 apt-get install -y iw wpasupplicant hostapd dnsmasq pi-bluetooth
-apt-get install -y firmware-brcm80211
+apt-get install -y firmware-brcm80211 firmware-realtek
  
 adduser pi
 usermod -a -G sudo,staff,kmem,plugdev pi
