@@ -25,8 +25,10 @@ umount_all() {
 
 make_rootfs() {
 	if [ -f ${chrootdir}.tgz ] ; then
+		echo "Unpacking root filesystem"
 		tar zxf ${chrootdir}.tgz
 	else
+		echo "Creating root filesystem"
 		qemu-debootstrap --arch ${arch} ${dist} ${chrootdir} ${debianurl}
 		tar zcf ${chrootdir}.tgz ${chrootdir}
 	fi
@@ -40,16 +42,28 @@ make_rootfs() {
 }
 
 clean_rootfs() {
+	echo "Cleaning up filesystem"
 	rm -f ${chrootdir}/usr/bin/qemu-arm-static
 	rm -rf ${chrootdir}/var/cache/apt
 }
 
 make_bootfs() {
-	mkdir ./bootfs
+	echo "Creating bootfs"
+	mkdir -p ./bootfs
 	cp -R ${fwdir}/boot/* bootfs/
 }
 
+make_fs() {
+	if [ -f ${chrootdir}-customized.tgz ] ; then
+		echo "Skipping creating flesystem because ${chrootdir}-customized.tgz exists"
+	else
+		make_rootfs
+	fi
+	make_bootfs
+}
+
 make_image() {
+	echo "Creating raw image"
 
 	dd if=/dev/zero of=${image_name} bs=1M count=3780
 	device=$(losetup -f --show ${image_name})
@@ -72,13 +86,20 @@ EOF
 }
 
 customize() {
-	mount_all
-	cp customize.sh ${chrootdir}/root
-	chroot ${chrootdir} /root/customize.sh
-	umount_all
+	if [ -f ${chrootdir}-customized.tgz ] ; then
+		echo "Unpacking customized filesystem"
+		tar zxf ${chrootdir}-customized.tgz
+	else
+		echo "Customizing filesystem"
+		mount_all
+		cp customize.sh ${chrootdir}/root
+		chroot ${chrootdir} /root/customize.sh
+		umount_all
+	fi
 }
 
 copy_image() {
+	echo "Copying files to image"
 	dev=$(kpartx -va ${image_name} | sed -E 's/.*(loop[0-9])p.*/\1/g' | head -1)
 
 	mkfs.vfat /dev/mapper/${dev}p1
@@ -102,10 +123,9 @@ copy_image() {
 	kpartx -d ${image_name}
 }
 
-make_image
-make_bootfs
-make_rootfs
+make_fs
 customize
 clean_rootfs
+make_image
 copy_image
 
