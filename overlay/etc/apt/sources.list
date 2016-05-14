@@ -1,0 +1,2 @@
+deb http://archive.raspbian.org/raspbian jessie main non-free
+deb http://archive.raspberrypi.org/debian/ jessie main
