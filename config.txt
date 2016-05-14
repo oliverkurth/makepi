@@ -1,0 +1,7 @@
+kernel=kernel.img
+arm_freq=800
+core_freq=250
+sdram_freq=400
+over_voltage=0
+gpu_mem=16
+
