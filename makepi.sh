@@ -38,8 +38,6 @@ make_rootfs() {
 
 	mkdir -p ${chrootdir}/lib/modules/
 	cp -R ${fwdir}/modules/* ${chrootdir}/lib/modules/
-
-	cp -R overlay/* ${chrootdir}
 }
 
 clean_rootfs() {
@@ -93,6 +91,9 @@ customize() {
 		tar zxf ${chrootdir}-customized.tgz
 	else
 		echo "Customizing filesystem"
+
+		cp -R overlay/* ${chrootdir}
+
 		mount_all
 		cp customize.sh ${chrootdir}/root
 		chroot ${chrootdir} /root/customize.sh
