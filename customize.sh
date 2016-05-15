@@ -13,7 +13,7 @@ apt-get install -y --force-yes python python-flask python-httplib2 python-netifa
 apt-get install -y --force-yes nginx-common nginx-extras uwsgi uwsgi-plugin-python
  
 adduser pi
-usermod -a -G sudo,staff,kmem,plugdev pi
+usermod -a -G sudo,staff,kmem,plugdev,netdev pi
 
 apt-get clean
 
