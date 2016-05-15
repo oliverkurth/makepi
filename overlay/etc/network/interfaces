@@ -9,3 +9,9 @@ iface ap0 inet static
 	address 192.168.10.254
 	netmask 255.255.255.0
 
+auto wlan0
+iface wlan0 inet dhcp
+        wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface default inet dhcp
+
