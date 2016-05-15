@@ -95,8 +95,13 @@ customize() {
 		cp -R overlay/* ${chrootdir}
 
 		mount_all
+
+		[ -x ./pre-customize.sh ] && ./pre-customize.sh ${chrootdir}
+
 		cp customize.sh ${chrootdir}/root
 		chroot ${chrootdir} /root/customize.sh
+
+		[ -x ./post-customize.sh ] && ./post-customize.sh ${chrootdir}
 
 		# kill everything executed with qemu-arm-static:
 		pkill -f /usr/bin/qemu-arm-static
