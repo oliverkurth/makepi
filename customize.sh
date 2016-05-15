@@ -9,7 +9,7 @@ apt-get install -y --force-yes sudo openssh-server ntp patch less rsync vim
 apt-get install -y --force-yes iw wpasupplicant hostapd crda dnsmasq pi-bluetooth
 apt-get install -y --force-yes firmware-brcm80211 firmware-realtek firmware-ralink
 apt-get install -y --force-yes git
-apt-get install -y --force-yes python python-flask python-httplib2 python-iwlib python-netifaces
+apt-get install -y --force-yes python python-flask python-httplib2 python-netifaces
 apt-get install -y --force-yes nginx-common nginx-extras uwsgi uwsgi-plugin-python
  
 adduser pi
