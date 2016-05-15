@@ -1,7 +1,7 @@
 #!/bin/sh
 
-wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
-wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
+http_proxy="" wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
+http_proxy="" wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
 apt-get update
 apt-get -y upgrade
 
