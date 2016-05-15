@@ -1,8 +1,5 @@
 #!/bin/sh
 
-echo $'#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d
-sudo chmod +x /usr/sbin/policy-rc.d
-
 wget http://archive.raspbian.org/raspbian.public.key -O - | apt-key add -
 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | apt-key add -
 apt-get update
@@ -19,6 +16,4 @@ adduser pi
 usermod -a -G sudo,staff,kmem,plugdev pi
 
 apt-get clean
-
-rm /usr/sbin/policy-rc.d
 
