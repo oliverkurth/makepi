@@ -1,0 +1,15 @@
+[Unit]
+Description=Packet Filtering Framework
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iptables-restore /etc/iptables.ipv4.nat
+ExecReload=/sbin/iptables-restore /etc/iptables.ipv4.nat
+ExecStop=/sbin/iptables-restore /etc/iptables.flushed
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+

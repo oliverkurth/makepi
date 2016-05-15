@@ -17,3 +17,7 @@ usermod -a -G sudo,staff,kmem,plugdev pi
 
 apt-get clean
 
+systemctl enable hostapd
+systemctl enable dnsmasq
+systemctl enable iptables
+

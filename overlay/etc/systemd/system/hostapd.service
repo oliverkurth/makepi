@@ -1,0 +1,13 @@
+[Unit]
+Description=HostAP Daemon
+Requires=sys-subsystem-net-devices-ap0.device
+After=sys-subsystem-net-devices-ap0.device
+BindsTo=sys-subsystem-net-devices-ap0.device
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/hostapd /etc/hostapd/hostapd.conf
+
+[Install]
+WantedBy=multi-user.target
+
