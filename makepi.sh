@@ -30,7 +30,7 @@ make_rootfs() {
 	else
 		echo "Creating root filesystem"
 		rm -rf ${chrootdir}
-		qemu-debootstrap --arch ${arch} ${dist} ${chrootdir} ${debianurl}
+		qemu-debootstrap --arch ${arch} ${dist} ${chrootdir} ${debianurl} || exit 1
 		tar zcf ${chrootdir}.tgz ${chrootdir}
 	fi
 
