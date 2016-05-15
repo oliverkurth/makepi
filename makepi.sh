@@ -9,7 +9,7 @@ arch=armhf
 fwdir=~/firmware/
 fwdir_nonfree=~/firmware-nonfree/
 chrootdir=chroot-raspbian-${arch}
-image_name=rasbian-jessie.img
+image_name=raspbian-jessie.img
 
 mount_all() {
 	mount -t proc proc ${chrootdir}/proc
