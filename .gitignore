@@ -1,0 +1,4 @@
+bootfs/
+chroot-*.tgz
+chroot*/
+*.img
