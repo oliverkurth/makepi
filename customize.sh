@@ -18,6 +18,9 @@ usermod -a -G sudo,staff,kmem,plugdev pi
 
 apt-get clean
 
+# bug fix for raspbian
+chmod u+s /bin/ping
+
 systemctl enable hostapd
 systemctl enable dnsmasq
 systemctl enable iptables
