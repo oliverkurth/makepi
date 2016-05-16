@@ -20,4 +20,5 @@ apt-get clean
 systemctl enable hostapd
 systemctl enable dnsmasq
 systemctl enable iptables
+systemctl enable uwsgi-pypiwifi
 

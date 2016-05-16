@@ -1,0 +1,15 @@
+[Unit]
+Description=Wifi Network Information via Web
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/pypiwifi
+ExecStart=/usr/bin/uwsgi --plugin python --socket 127.0.0.1:3031 -w main:app --master --processes 4 --threads 2
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGQUIT
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
