@@ -1,13 +1,10 @@
 #!/bin/bash
 
-sdsize=3780
-
 debianurl=http://archive.raspbian.org/raspbian
 dist=jessie
 arch=armhf
 
 fwdir=~/firmware/
-fwdir_nonfree=~/firmware-nonfree/
 chrootdir=chroot-raspbian-${arch}
 image_name=raspbian-jessie.img
 
