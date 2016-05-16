@@ -17,6 +17,9 @@ usermod -a -G sudo,staff,kmem,plugdev,netdev pi
 
 apt-get clean
 
+# we replaced this, can't have two cnfigs on 0.0.0.0:80
+rm -f /etc/nginx/sites-enabled/default
+
 systemctl enable hostapd
 systemctl enable dnsmasq
 systemctl enable iptables
