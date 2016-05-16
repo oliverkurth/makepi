@@ -64,7 +64,10 @@ make_fs() {
 make_image() {
 	echo "Creating raw image"
 
-	dd if=/dev/zero of=${image_name} bs=1M count=3780
+	count=$(sudo du -s -B$((1024*1024)) ${chrootdir} | cut -f1)
+	count=$(($count+128+64))
+
+	dd if=/dev/zero of=${image_name} bs=1M count=${count}
 	device=$(losetup -f --show ${image_name})
 	fdisk ${device} << EOF
 n
@@ -119,7 +122,7 @@ copy_image() {
 	dev=$(kpartx -va ${image_name} | sed -E 's/.*(loop[0-9])p.*/\1/g' | head -1)
 
 	mkfs.vfat /dev/mapper/${dev}p1
-	mkfs.ext4 /dev/mapper/${dev}p2
+	mkfs.ext4 /dev/mapper/${dev}p2 -L root
 
 	mkdir -p /mnt/rootfs
 	mount /dev/mapper/${dev}p2 /mnt/rootfs
