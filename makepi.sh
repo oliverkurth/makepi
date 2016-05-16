@@ -8,6 +8,11 @@ fwdir=~/firmware/
 chrootdir=chroot-raspbian-${arch}
 image_name=raspbian-jessie.img
 
+if [ ! -d ${fwdir} ] ; then
+	echo "${fwdir} does not exist - you need to clone https://github.com/raspberrypi/firmware.git"
+	exit 1
+fi
+
 mount_all() {
 	mount -t proc proc ${chrootdir}/proc
 	mount -t sysfs sysfs ${chrootdir}/sys
