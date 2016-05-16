@@ -11,8 +11,9 @@ apt-get install -y --force-yes firmware-brcm80211 firmware-realtek firmware-rali
 apt-get install -y --force-yes git
 apt-get install -y --force-yes python python-flask python-httplib2 python-netifaces
 apt-get install -y --force-yes nginx-common nginx-extras uwsgi uwsgi-plugin-python
- 
-adduser pi
+
+# password is 'raspberry' 
+useradd -m pi -s /bin/bash -p '$6$24rIum07$C07au5jT1GDCaT7QIO4QpYfMmciSTEyeuhfNonEvM8E7NowPa1d2Gt9kMpxSnGJL1G/VvEXY2w6IA9FS.ipjF1'
 usermod -a -G sudo,staff,kmem,plugdev,netdev pi
 
 apt-get clean
