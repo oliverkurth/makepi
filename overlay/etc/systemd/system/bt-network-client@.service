@@ -1,0 +1,12 @@
+[Unit]
+After=bluetooth.service
+PartOf=bluetooth.service
+
+[Service]
+Restart=on-success
+RestartSec=5
+ExecStart=/usr/bin/bt-network -c %I nap
+
+[Install]
+WantedBy=bluetooth.target
+
