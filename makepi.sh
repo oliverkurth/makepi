@@ -121,7 +121,7 @@ customize() {
 
 copy_image() {
 	echo "Copying files to image"
-	dev=$(kpartx -va ${image_name} | sed -E 's/.*(loop[0-9])p.*/\1/g' | head -1)
+	dev=$(kpartx -s -va ${image_name} | sed -E 's/.*(loop[0-9])p.*/\1/g' | head -1)
 
 	mkfs.vfat /dev/mapper/${dev}p1
 	mkfs.ext4 /dev/mapper/${dev}p2 -L root
