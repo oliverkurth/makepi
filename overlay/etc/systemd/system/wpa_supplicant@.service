@@ -1,0 +1,14 @@
+[Unit]
+Description=WPA supplicant daemon (interface-specific version)
+Requires=sys-subsystem-net-devices-%I.device
+After=sys-subsystem-net-devices-%I.device
+BindsTo=sys-subsystem-net-devices-%I.device
+
+[Service]
+Type=simple
+ExecStart=/sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant.conf -D nl80211,wext -i %I
+
+[Install]
+Alias=multi-user.target.wants/wpa_supplicant@%I.service
+WantedBy=multi-user.target
+
