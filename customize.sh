@@ -27,8 +27,13 @@ rm -f /etc/nginx/sites-enabled/default
 # bug fix for raspbian
 chmod u+s /bin/ping
 
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+
 systemctl enable hostapd
 systemctl enable dnsmasq
 systemctl enable iptables
 systemctl enable uwsgi-pypiwifi
+
+ln -fs /run/systemd/resolve/resolv.conf /etc/resolv.conf
 

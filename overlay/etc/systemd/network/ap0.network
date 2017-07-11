@@ -1,0 +1,7 @@
+[Match]
+Name=ap0
+
+[Network]
+Address=192.168.10.254/24
+IPForward=1
+

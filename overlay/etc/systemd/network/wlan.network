@@ -1,0 +1,7 @@
+[Match]
+Name=wlan*
+
+[Network]
+DHCP=ipv4
+IPForward=1
+
