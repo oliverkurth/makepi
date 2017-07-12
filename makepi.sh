@@ -5,8 +5,8 @@ dist=jessie
 arch=armhf
 
 fwdir=~/firmware/
-chrootdir=chroot-raspbian-${arch}
-image_name=raspbian-jessie.img
+chrootdir=chroot-raspbian-${dist}-${arch}
+image_name=raspbian-${dist}.img
 
 if [ ! -d ${fwdir} ] ; then
 	echo "${fwdir} does not exist - you need to clone https://github.com/raspberrypi/firmware.git"
