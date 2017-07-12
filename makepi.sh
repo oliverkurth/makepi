@@ -1,7 +1,7 @@
 #!/bin/bash
 
 debianurl=http://archive.raspbian.org/raspbian
-dist=jessie
+dist=stretch
 arch=armhf
 
 fwdir=~/firmware/
