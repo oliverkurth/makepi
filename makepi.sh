@@ -17,9 +17,11 @@ mount_all() {
 	mount -t proc proc ${chrootdir}/proc
 	mount -t sysfs sysfs ${chrootdir}/sys
 	mount -o bind /dev ${chrootdir}/dev
+	mount -o bind /var/cache/apt ${chrootdir}/var/cache/apt
 }
 
 umount_all() {
+	umount --force ${chrootdir}/var/cache/apt
 	umount --force ${chrootdir}/dev
 	umount --force ${chrootdir}/sys
 	umount --force ${chrootdir}/proc
@@ -45,7 +47,7 @@ make_rootfs() {
 clean_rootfs() {
 	echo "Cleaning up filesystem"
 	rm -f ${chrootdir}/usr/bin/qemu-arm-static
-	rm -rf ${chrootdir}/var/cache/apt
+#	rm -rf ${chrootdir}/var/cache/apt
 }
 
 make_bootfs() {
