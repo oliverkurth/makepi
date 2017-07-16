@@ -32,6 +32,11 @@ useradd -m pi -s /bin/bash -p '$6$24rIum07$C07au5jT1GDCaT7QIO4QpYfMmciSTEyeuhfNo
 usermod -a -G sudo,staff,kmem,plugdev,netdev pi
 usermod -a -G netdev www-data
 
+chmod g+w /etc/wpa_supplicant/
+chmod g+w /etc/wpa_supplicant/wpa_supplicant.conf
+chgrp netdev /etc/wpa_supplicant/
+chgrp netdev /etc/wpa_supplicant/wpa_supplicant.conf
+
 # we replaced this, can't have two configs on 0.0.0.0:80
 rm -f /etc/nginx/sites-enabled/default
 
