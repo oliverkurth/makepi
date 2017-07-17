@@ -46,7 +46,7 @@ chmod u+s /bin/ping
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 
-systemctl enable hostapd
+systemctl enable hostapd@ap0
 systemctl enable dnsmasq
 systemctl enable iptables
 systemctl enable uwsgi-pypiwifi
