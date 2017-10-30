@@ -25,6 +25,7 @@ The following packages need to be installed:
 
 * qemu-user-static
 * kpartx
+* debootstrap
 
 You also need to clone the repository https://github.com/raspberrypi/firmware.git.
 The script expects this to be in your home directory.
